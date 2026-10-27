@@ -37,6 +37,10 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: 'Internal server error' })
 })
 
-app.listen(PORT, () => {
-  console.log(`[City Sphere API] Server running on http://localhost:${PORT}`)
-})
+if (process.env.VERCEL !== '1') {
+  app.listen(PORT, () => {
+    console.log(`City Sphere API running on port ${PORT}`)
+  })
+}
+
+export default app
